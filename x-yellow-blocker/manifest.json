@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "X 黄推屏蔽",
+  "version": "1.0.0",
+  "description": "自动隐藏 X 网页版黄推/引流垃圾，支持一键拉黑",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "https://x.com/*",
+    "https://twitter.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/sw.js"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
+      "js": [
+        "src/shared/constants.js",
+        "src/shared/rules.js",
+        "src/shared/match.js",
+        "src/content/dom.js",
+        "src/content/ui.js",
+        "src/content/main.js"
+      ],
+      "css": ["styles/content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

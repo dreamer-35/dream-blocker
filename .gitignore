@@ -1,3 +1,11 @@
+# macOS
+.DS_Store
+
+# Chrome extension packaging (do not commit private keys)
+*.pem
+*.crx
+*.zip
+
 # Logs
 logs
 *.log
