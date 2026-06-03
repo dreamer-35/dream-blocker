@@ -115,6 +115,21 @@ button:hover {
   filter: brightness(0.95);
 }
 
+.status {
+  min-height: 18px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #536471;
+}
+
+.status-ok {
+  color: #0f7b6c;
+}
+
+.status-err {
+  color: rgb(220, 38, 38);
+}
+
 .privacy {
   margin: 8px 0 0;
   font-size: 11px;

@@ -2,6 +2,8 @@
 (function (root) {
   const XYB = (root.XYB = root.XYB || {});
 
+  XYB.RULES_VERSION = 3;
+
   XYB.STORAGE_KEYS = {
     settings: "xyb_settings",
     stats: "xyb_stats",
@@ -13,7 +15,8 @@
     enabled: true,
     autoHide: true,
     scanReplies: true,
-    debug: false,
+    debug: true,
+    rulesVersion: XYB.RULES_VERSION,
     useBuiltinKeywords: true,
     useBuiltinDomains: true,
     useBuiltinRegexes: true,
@@ -28,11 +31,27 @@
     userShow: "https://x.com/i/api/1.1/users/show.json",
   };
 
-  XYB.TWEET_SELECTORS = [
-    'article[data-testid="tweet"]',
-    'article[role="article"]',
-  ];
+  XYB.TWEET_SELECTOR = 'article[data-testid="tweet"]';
 
-  XYB.BLOCK_QUEUE_DELAY_MS = 800;
-  XYB.SCAN_DEBOUNCE_MS = 150;
+  XYB.RESERVED_HANDLES = new Set([
+    "home",
+    "explore",
+    "notifications",
+    "messages",
+    "i",
+    "search",
+    "settings",
+    "compose",
+    "login",
+    "signup",
+  ]);
+
+  XYB.BLOCK_TIMEOUT_MS = 12000;
+  XYB.SCAN_DEBOUNCE_MS = 400;
+  XYB.RESCAN_DEBOUNCE_MS = 600;
+  XYB.SCROLL_RESCAN_MS = 1200;
+  XYB.GLOBAL_SCAN_MIN_MS = 2000;
+  XYB.TWEET_REPROCESS_DEBOUNCE_MS = 600;
+  XYB.AUTH_THROTTLE_MS = 3000;
+  XYB.MIN_WEAK_KEYWORD_HITS = 2;
 })(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : window);

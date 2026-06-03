@@ -17,24 +17,24 @@
 
     <section class="section">
       <label class="row"><input type="checkbox" id="autoHide" /> 自动隐藏命中推文</label>
-      <label class="row"><input type="checkbox" id="debug" /> 调试日志（控制台 [xyb]）</label>
+      <label class="row"><input type="checkbox" id="debug" checked /> 调试日志（默认开启，控制台 [xyb]）</label>
     </section>
 
     <section class="section">
-      <h2>内置规则</h2>
-      <label class="row"><input type="checkbox" id="useBuiltinKeywords" /> 关键词</label>
-      <label class="row"><input type="checkbox" id="useBuiltinDomains" /> 域名</label>
-      <label class="row"><input type="checkbox" id="useBuiltinRegexes" /> 正则</label>
+      <h2>内置规则 <span class="hint">强信号直拦 / 弱信号需≥2条</span></h2>
+      <label class="row"><input type="checkbox" id="useBuiltinKeywords" /> 关键词（强+弱）</label>
+      <label class="row"><input type="checkbox" id="useBuiltinDomains" /> 域名（仅匹配链接）</label>
+      <label class="row"><input type="checkbox" id="useBuiltinRegexes" /> 组合正则</label>
     </section>
 
     <section class="section">
       <h2>自定义规则 <span class="hint">每行一条</span></h2>
       <label>关键词</label>
-      <textarea id="keywords" rows="3" placeholder="追加关键词…"></textarea>
+      <textarea id="keywords" rows="3" placeholder="自定义词：命中即拦（慎用短词如「骚」易误伤）"></textarea>
       <label>域名片段</label>
-      <textarea id="domains" rows="2" placeholder="example.com"></textarea>
+      <textarea id="domains" rows="2" placeholder="仅匹配推文内链接域名"></textarea>
       <label>正则</label>
-      <textarea id="regexes" rows="2" placeholder="1[3-9]\d{9}"></textarea>
+      <textarea id="regexes" rows="2" placeholder="建议组合语境，避免单独手机号"></textarea>
       <label>白名单用户名</label>
       <textarea id="whitelist" rows="2" placeholder="每行一个 @handle"></textarea>
     </section>
@@ -44,8 +44,10 @@
       <span>今日拉黑 <strong id="statBlocked">0</strong></span>
     </section>
 
+    <p id="status" class="status" aria-live="polite"></p>
+
     <section class="section actions">
-      <button type="button" id="save">保存并刷新扫描</button>
+      <button type="button" id="save">保存设置</button>
       <button type="button" id="export" class="secondary">导出规则</button>
       <button type="button" id="import" class="secondary">导入规则</button>
       <button type="button" id="reset" class="secondary">恢复默认</button>
@@ -54,6 +56,7 @@
     <p class="privacy">规则与统计仅存本机，不上传任何服务器。</p>
 
     <script src="../shared/constants.js"></script>
+    <script src="../shared/ext.js"></script>
     <script src="../shared/rules.js"></script>
     <script src="popup.js"></script>
   </body>
